@@ -1,0 +1,16 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items:baseline;
+    justify-content: center;
+}
+.calculator
+{
+   border: 1px solid black;
+   height: 600px;
+   width: 400px;
+}
+

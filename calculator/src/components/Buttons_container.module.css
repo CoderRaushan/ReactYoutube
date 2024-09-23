@@ -1,0 +1,23 @@
+.button_container
+{
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+justify-content:center;
+}
+.button
+{
+    height: 85px;
+    width: 85px;
+    margin: 3px;
+    background-color: rgb(175, 241, 241);
+    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4rem;
+}
+.button:hover
+{
+    border-radius:1rem;
+}
