@@ -1,0 +1,7 @@
+.conborder
+{
+    border:2px solid black;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 3px 2px 8px 5px black;
+}
