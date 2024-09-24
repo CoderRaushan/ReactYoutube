@@ -1,40 +1,38 @@
 import "./App.css";
 import Todocontainers from "./components/Todocontainer";
 import AddToDo from "./components/AddToDo";
-function App() 
-{
+import { useState } from "react";
+import Addtododiv from "./components/Addtododiv";
 
-  let name = "Go to college";
-  let date = "8/02/2024";
+function App() {
+  const [tododata, settododata] = useState([]);
+  const onchange = (todo, date) => {
+    const newdata = [
+      ...tododata,  
+      {
+        name: todo,
+        date: date,
+      }
+    ];
+    settododata(newdata); 
+  };
+  const todelete=(data)=>
+  {
+    const newdata=tododata.filter((item)=>item.name!==data);
+    settododata(newdata);
+  };
 
-  const todolists=[
-    {
-      name:"Go To College",
-      date:"8/02/2024",
-    },
-    {
-      name:"BreakFast",
-      date:"8:00 am",
-    },
-    {
-      name:"Lunch",
-      date:"1:00 pm",
-    },
-    {
-      name:"Dinner",
-      date:"8:00 pm",
-    },
-    {
-      name:"Movie",
-      date:"12:00 pm",
-    }
-  ]
   return (
     <center>
       <AddToDo />
-      <Todocontainers  todolists={todolists} />
+      <Addtododiv onchange={onchange} />
+      {tododata.length > 0 ? (
+        <Todocontainers todolists={tododata} todelete={todelete}/>
+      ) : (
+        "Enjoy your day!"
+      )}
     </center>
-  )
-};
+  );
+}
 
-export default App
+export default App;
