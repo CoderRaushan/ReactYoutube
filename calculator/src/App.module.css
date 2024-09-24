@@ -6,11 +6,12 @@ body{
     display: flex;
     align-items:baseline;
     justify-content: center;
+    
 }
 .calculator
 {
-   border: 1px solid black;
-   height: 600px;
-   width: 400px;
+   border: 2px solid black;
+   height: 620px;
+   width: 360px;
 }
 
