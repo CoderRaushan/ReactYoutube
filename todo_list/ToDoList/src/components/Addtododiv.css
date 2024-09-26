@@ -1,0 +1,33 @@
+body
+{
+    overflow-x: hidden;
+}
+.form-control 
+{
+    margin-left: 1rem; 
+}
+#add_button
+{
+    border-radius: 50%;
+    padding:6px 6px 6px 6px;
+    /* font-size: 2.4rem; */
+    background-color: rgb(98, 72, 177);
+    border: none;
+    color: #fff;
+}
+.icon
+{
+    font-size: 3rem;
+}
+
+@media(max-width:658px)
+{
+#add_button
+{
+    padding:6px 6px 6px 6px;
+}
+.icon
+{
+    font-size: 2.3rem;
+}
+}

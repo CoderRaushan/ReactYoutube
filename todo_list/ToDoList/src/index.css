@@ -1,0 +1,12 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+#root
+{
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    background-color: rgb(168, 234, 88);
+}
