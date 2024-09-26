@@ -4,7 +4,7 @@ function AddToDo({onchange})
     return (
     <h1>
     {/* ToDoList Date: {date.toLocaleDateString()} Time: {date.toLocaleTimeString()} */}
-    TODO List 
+    RausList
     </h1>
     )
 }
