@@ -10,6 +10,7 @@ body{
 }
 .calculator
 {
+   margin-top: -4rem;
    border: 2px solid black;
    height: 620px;
    width: 360px;
