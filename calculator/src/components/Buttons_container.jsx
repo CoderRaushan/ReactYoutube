@@ -14,7 +14,6 @@ const ButtonContainer = ({ onclickbtn }) => {
                 if (["sqrt", "π", "**", "!","/","*","-","+","="].includes(button)) {
                     buttonClass += ` ${styles.special}`;
                 }
-
                 return (
                     <button
                         key={button}
