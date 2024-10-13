@@ -5,8 +5,16 @@ body{
   overflow-x: hidden;
 
 }
-
-.sidebar
+.apna-container
 {
-  height: 90vh;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+.content
+{
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  /* justify-content: space-around ; */
 }
