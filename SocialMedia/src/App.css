@@ -10,11 +10,39 @@ body{
   height: 100vh;
   width: 100%;
   display: flex;
+  
 }
+
 .content
 {
   height: 100vh;
   width: 100%;
   flex-direction: column;
-  /* justify-content: space-around ; */
+}
+
+
+.main_content
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.post-card
+{
+  margin:20px 50px;
+  cursor: pointer;
+}
+.badge
+{
+  margin:0 3px ;
+}
+.likes
+{
+  margin-top: 10px;
+}
+.form-continer
+{
+  width: 60%;
+  margin-left: 13rem;
+  margin-top: 2rem;
 }
