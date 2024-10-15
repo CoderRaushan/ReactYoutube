@@ -13,7 +13,7 @@ function App() {
     <div className="apna-container">
       <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
       <div className="content">
-        <Header />
+        <Header selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
            <div className="main_content">
            {selectedTab==="Home"?<PostList/> : <CreatePost />}
            </div>
