@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { FaHeart } from "react-icons/fa";
+import { BiSolidLike,BiSolidDislike } from "react-icons/bi";
+import { IoEye } from "react-icons/io5";
 import { PostList as PostData  } from "../Stores/Post-List-Store";
 
 const Post = ({ post }) => {
-  const { deletePost } = useContext(PostData);
-  console.log(deletePost);
+  const { deletePost,IncLike,DecLike } = useContext(PostData);
   return (
-    <div className="card post-card" style={{ width: "18rem" }}>
+    <div className="card post-card" style={{ width: "21rem" }}>
       <div className="card-body">
         <h5 className="card-title">
           {post.title}
@@ -19,13 +19,19 @@ const Post = ({ post }) => {
             <span className="visually-hidden">unread messages</span>
           </span>
         </h5>
+        <p><IoEye /> {post.views}</p>
         <p className="card-text">{post.body}</p>
         {post.tags.map((tag) => (
-          <span key={tag} className="badge bg-primary">
+          <span key={post.id} className="badge bg-primary">
             {tag}
           </span>
         ))}
-        <FaHeart /> {post.reactions}
+        <span>
+        <BiSolidLike onClick={()=>IncLike(post.id)}/> {post.reactions.likes} 
+        </span>
+       <span>
+       <BiSolidDislike onClick={()=>DecLike(post.id)}/>  {post.reactions.dislikes}
+       </span>
       </div>
     </div>
   );

@@ -5,25 +5,39 @@ const CreatePost = () => {
   const UserId=useRef();
   const Title=useRef();
   const body=useRef();
-  const Reactions=useRef();
+  const Likes=useRef();
+  const disLikes=useRef();
+  const Views=useRef();
   const Tags=useRef();
-
-  const formHandlilng=(event)=>
-  {
+  
+  const formHandlilng = (event) => {
     event.preventDefault();
-   const useIdData=UserId.current.value;
-   const TitleData=Title.current.value;
-   const bodyData=body.current.value;
-   const ReactionsdData=Reactions.current.value;
-   const TagsdData=Tags.current.value.split(" ");
-   UserId.current.value="";
-   Title.current.value="";
-   body.current.value="";
-   Reactions.current.value="";
-   Tags.current.value="";
-
-   addPost(useIdData,TitleData,bodyData,ReactionsdData,TagsdData);
-  }
+    
+    const useIdData = UserId.current.value;
+    const TitleData = Title.current.value;
+    const bodyData = body.current.value;
+    
+    // Parse numbers properly
+    const LikesData = parseInt(Likes.current.value, 10);
+    const DisLikesData = parseInt(disLikes.current.value, 10);
+    const ViewsData = parseInt(Views.current.value, 10);
+    
+    const TagsdData = Tags.current.value.split(" ");
+    
+    console.log("likes, dislikes, views", LikesData, DisLikesData, ViewsData);
+    
+    // Clear form inputs
+    UserId.current.value = "";
+    Title.current.value = "";
+    body.current.value = "";
+    Tags.current.value = "";
+    Likes.current.value = "";
+    disLikes.current.value = "";
+    Views.current.value = "";
+    
+    // Pass the numeric values to addPost
+    addPost(useIdData, TitleData, bodyData, TagsdData, LikesData, DisLikesData, ViewsData);
+  };
   return (
     <div className="form-continer">
       <form onSubmit={formHandlilng}>
@@ -59,13 +73,35 @@ const CreatePost = () => {
         </div> 
         <br />
         <div className="form-group">
-          <label for="reactions">Reactions</label>
+          <label for="reactions">Likes</label>
           <input
-            ref={Reactions}
+            ref={Likes}
             type="number"
             className="form-control"
-            id="reactions"
-            placeholder="Enter reactions"
+            id="Likes"
+            placeholder="Enter Likes"
+          />
+        </div>
+        <br />
+        <div className="form-group">
+          <label for="reactions">disLikes</label>
+          <input
+            ref={disLikes}
+            type="number"
+            className="form-control"
+            id="disLikes"
+            placeholder="Enter disLikes"
+          />
+        </div>
+        <br />
+        <div className="form-group">
+          <label for="reactions">Views</label>
+          <input
+            ref={Views}
+            type="number"
+            className="form-control"
+            id="Views"
+            placeholder="Enter Views"
           />
         </div> 
         <br />

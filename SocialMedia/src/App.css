@@ -10,7 +10,6 @@ body{
   height: 100vh;
   width: 100%;
   display: flex;
-  
 }
 
 .content
@@ -45,4 +44,13 @@ body{
   width: 60%;
   margin-left: 13rem;
   margin-top: 2rem;
+}
+.welcomemsg
+{
+  height:40vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
