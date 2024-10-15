@@ -7,6 +7,7 @@ import { PostList as PostData  } from "../Stores/Post-List-Store";
 const Post = ({ post }) => {
   const { deletePost,IncLike,DecLike } = useContext(PostData);
   return (
+    <>
     <div className="card post-card" style={{ width: "21rem" }}>
       <div className="card-body">
         <h5 className="card-title">
@@ -34,6 +35,7 @@ const Post = ({ post }) => {
        </span>
       </div>
     </div>
+    </>
   );
 };
 
