@@ -1,5 +1,4 @@
-import { useReducer,createContext} from 'react';
-
+import { useReducer,createContext,useCallback} from 'react';
 export const PostList=createContext({
     postList:[],
     addPost:()=>{},
@@ -68,7 +67,7 @@ const PostListProvider=({children})=>
                 },
             });
         }
-    const deletePost=(postId)=>
+    const deletePost=useCallback((postId)=>
     {
         dispatchPostList({
             type:"DELETE",
@@ -76,7 +75,8 @@ const PostListProvider=({children})=>
                 postId,
             }
         });
-    }//DecLike
+    },[dispatchPostList]);
+
     const IncLike=(postId)=>
     {   
         console.log("post id is form dis:",postId)

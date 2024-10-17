@@ -144,6 +144,18 @@ body {
   display: flex;
   gap: 11rem;
 }
+.spineer
+{
+  margin-top: 10rem;
+  margin-left: 36rem;
+  margin-bottom: 10rem;
+ 
+}
+#spinner_heiht_widht
+{
+  height: 200px;
+  width: 200px;
+}
 
 @media(max-width:600px)
 {
@@ -175,5 +187,16 @@ body {
   {
     width: 300px; 
   }
+  .spineer
+{
+  margin-top: 8rem;
+  margin-left: 12rem;
+  margin-bottom: 8rem;
+}
+#spinner_heiht_widht
+{
+  height: 100px;
+  width: 100px;
+}
   
 }
