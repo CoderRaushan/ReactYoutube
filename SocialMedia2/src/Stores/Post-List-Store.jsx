@@ -1,10 +1,9 @@
-import { useReducer,createContext,useCallback,useState,useEffect} from 'react';
+import { useReducer,createContext,useCallback} from 'react';
 
 export const PostList=createContext({
     postList:[],
     addPost:()=>{},
     IncLike:()=>{},
-    spineer:false,
     DecLike:()=>{},
     deletePost:()=>{},
 });
@@ -86,29 +85,9 @@ const PostListProvider=({children})=>
         });
     }
     
-    const [spineer,setspinner]=useState(false);
-    useEffect(()=>
-    {
-    setspinner(true);
-    const controller=new AbortController();
-    const signal=controller.signal;
-    fetch('https://dummyjson.com/posts',{signal})
-    .then(res => res.json())
-    .then(data => 
-    {
-        addPostFromServer(data.posts);
-        setspinner(false);
-    });
-    return ()=>
-    {
-        console.log("cleaning up useeffect()");
-        controller.abort();
-    }
-    },[])
-
     return (
     <PostList.Provider value={{postList,addPost,deletePost,
-        spineer,IncLike,DecLike}}>
+        IncLike,DecLike}}>
         {children}
     </PostList.Provider>
     );
