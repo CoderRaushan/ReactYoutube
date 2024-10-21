@@ -40,6 +40,7 @@ const CreatePost = () => {
   };
   return (
     <div className="form-continer">
+      <br /> <br />
       <form onSubmit={formHandlilng}>
       <div className="form-group">
           <label for="userId">UserId</label>

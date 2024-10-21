@@ -23,7 +23,7 @@ const Post = ({ post }) => {
         <p><IoEye /> {post.views}</p>
         <p className="card-text">{post.body}</p>
         {post.tags.map((tag) => (
-          <span key={post.id} className="badge bg-primary">
+          <span className="badge bg-primary">
             {tag}
           </span>
         ))}

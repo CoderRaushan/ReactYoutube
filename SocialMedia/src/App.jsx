@@ -6,17 +6,17 @@ import CreatePost from "./Components/CreatePost";
 import PostList from "./Components/PostList";
 import { useState } from "react";
 import PostListProvider from "./Stores/Post-List-Store";
+import { Outlet } from "react-router-dom";
+
 function App() {
   const [selectedTab,setSelectedTab]=useState("Home");
   return (
     <PostListProvider>
     <div className="apna-container">
-      <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
+      <Sidebar />
       <div className="content">
-        <Header selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
-           <div className="main_content">
-           {selectedTab==="Home"?<PostList/> : <CreatePost />}
-           </div>
+        <Header/>
+           <Outlet/>
         <Footer />
       </div>
     </div>
