@@ -1,0 +1,27 @@
+
+.button_con
+{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: row;
+
+}
+.main_container
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top:9rem;
+}
+.search_btn
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap:6px;
+    align-items: center;
+    margin-top:1rem;
+    margin-left: 4rem;
+}
