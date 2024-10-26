@@ -1,26 +1,28 @@
 //  1.st step => import {createStore} from "redux";
-import { act } from "react";
-import {createStore} from "redux";
-import Privacy from "../component/Privacy";
 
-// 2nd. create Reducer  function
+import {createStore} from "redux";
+
+
 const InitialValue={
     counter:0,
-    Privacy:false,
+    privacy:false,
 }
+
+// 2nd. create Reducer  function
 const CounterReducer=(store=InitialValue,action)=>
 {
     switch(action.type)
     {
         case 'Increment':
-            return {counter: store.counter+1};
+            return { ...store, counter: store.counter + 1 }; 
         case "Decrement":
-            return {counter: store.counter-1};
+            return { ...store, counter: store.counter - 1 };
         case "ADD":
-            console.log("add called",action.payload.value);
-            return {counter: store.counter+action.payload.value};
+            return { ...store, counter: store.counter + action.payload};
         case "SUB":
-            return {counter: store.counter-action.payload.value};
+            return { ...store, counter: store.counter - action.payload};
+        case "Privacy":
+            return {...store,privacy: !store.privacy};
         default:
             return store;
     }

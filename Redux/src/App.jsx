@@ -5,7 +5,8 @@ import Privacy from "./component/Privacy";
 import { useRef } from "react";
 
 function App() {
-  const Privacy = useSelector((store) => store.Privacy);
+  const privacy = useSelector((store) => store.privacy);
+  console.log(privacy);
   const usedispatch = useDispatch();
   const handleIncrement = () => {
     usedispatch({ type: "Increment" });
@@ -28,11 +29,15 @@ function App() {
     usedispatch({ type: "SUB",payload: value });
     input_val.current.value='';
   };
+  const privacyHandle=()=>
+  {
+    usedispatch({ type: "Privacy"});
+  }
 
   return (
     <>
       <div className="main_container">
-          {Privacy ? <Privacy/>: <Counter/>}
+          {privacy ? <Privacy/>: <Counter/>}
         <div className="button_con">
           <button onClick={handledecrement} className="btn btn-success">
             -1
@@ -40,6 +45,7 @@ function App() {
           <button onClick={handleIncrement} className="btn btn-warning">
             +1
           </button>
+          <button className="btn btn-primary" onClick={privacyHandle}>{privacy?"Hide":"Privacy"}</button>
         </div>
       </div>
       <div className="search_btn">
