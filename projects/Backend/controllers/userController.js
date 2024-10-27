@@ -1,9 +1,9 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
+import jwtTokenFunction from "../jwt/JwtToken.js";
 export const SignUp = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
   try {
-    // Check if all fields are provided
     if (!name || !email || !password || !confirmPassword) {
       return res.status(400).json({ error: "All fields are required!" });
     }
@@ -23,7 +23,54 @@ export const SignUp = async (req, res) => {
       password: hashPassword,
     });
     await newUser.save();
-    return res.status(201).json({ message: "User registered successfully!" });
+    if (newUser) {
+      jwtTokenFunction(newUser._id, name, email, res);
+      return res
+        .status(201)
+        .json({ message: "User registered successfully!", newUser });
+    }
+  } catch (error) {
+    console.log("error", error);
+    return res.status(500).json({ error: "Internal server error!" });
+  }
+};
+
+export const Login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    if (!email || !password) {
+      return res.status(400).json({ error: "All fields are required!" });
+    }
+    const user = await User.findOne({ email: email });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!user || !isMatch) {
+      return res.status(400).json({ error: "Invalid user credential!" });
+    }
+    if (user) {
+      jwtTokenFunction(user._id, user.name, user.email, res);
+      return res
+        .status(201)
+        .json({
+          message: "User Logdin successfully!",
+          _id: user._id,
+          name: user.name,
+          eamil: user.email,
+        });
+    } else {
+      return res.status(500).json({ error: "could not fetch form database!" });
+    }
+  } catch (error) {
+    console.log("error", error);
+    return res.status(500).json({ error: "Internal server error!" });
+  }
+};
+
+
+
+export const LogOut = async (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    return res.status(201).json({ message: "User Loged Out successfully!"});
   } catch (error) {
     console.log("error", error);
     return res.status(500).json({ error: "Internal server error!" });
