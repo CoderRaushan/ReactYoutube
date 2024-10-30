@@ -1,12 +1,21 @@
 import React from "react";
+import { useRef } from "react";
+import { Link,useNavigate } from "react-router-dom";
 const Header = () => {
+  const navigate = useNavigate();
+  const searchRef = useRef();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const search = searchRef.current.value;
+    navigate(`/${search}`);
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link to={"/"} className="navbar-brand">
             Raus Privated Limited
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -24,54 +33,46 @@ const Header = () => {
               style={{ "--bs-scroll-height": "100px" }}
             >
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link to="/" className="nav-link active" aria-current="page">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Profile
-                </a>  
+                <Link className="nav-link">Profile</Link>
               </li>
               <li className="nav-item dropdown">
-                <a
+                <Link
                   className="nav-link dropdown-toggle"
-                  href="#"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Link
-                </a>
+                </Link>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
+                    <Link className="dropdown-item">Action</Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
+                    <Link className="dropdown-item">Another action</Link>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
+                    <Link className="dropdown-item">Something else here</Link>
                   </li>
                 </ul>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
+                <Link className="nav-link disabled" aria-disabled="true">
                   Link
-                </a>
+                </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            <form className="d-flex" role="search" onSubmit={handleSubmit}>
               <input
+                ref={searchRef}
                 className="form-control me-2"
                 type="search"
                 placeholder="Search"
@@ -80,7 +81,15 @@ const Header = () => {
               <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
+              &nbsp;
             </form>
+            <Link to={"/register"}>
+              <button className="btn btn-warning">SignUp</button>
+            </Link>{" "}
+            &nbsp;
+            <Link to={"/Login"}>
+              <button className="btn btn-primary">LogIn</button>
+            </Link>
           </div>
         </div>
       </nav>

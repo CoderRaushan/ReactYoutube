@@ -6,7 +6,7 @@ function Home() {
         <div className="container col-xxl-8 px-4 py-5">
     <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
       <div className="col-10 col-sm-8 col-lg-6">
-        <img src="https://img.freepik.com/free-psd/digital-marketing-agency-corporate-web-banner-template_120329-5059.jpg?t=st=1730261618~exp=1730265218~hmac=396831c9ea494f3045a477899451dbbf7590e330445a678c874b305803bdf65e&w=1060" className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"/>
+        <img  className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"/>
       </div>
       <div className="col-lg-6">
         <h1 className="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>

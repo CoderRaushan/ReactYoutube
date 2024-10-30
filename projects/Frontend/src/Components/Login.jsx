@@ -17,6 +17,13 @@ const Register = () => {
       .post("http://localhost:8080/user/login", data)
       .then((response) => {
         const message = response.data.message;
+        console.log(response.data);
+        const User={
+            userId:response.data._id,
+            name:response.data.name,
+            email:response.data.email,
+        }
+        localStorage.setItem("User",JSON.stringify(User));
         toast.success(message, 
         {
           position: "top-center", 
