@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useRef } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../Stores/UserProfile";
+
 const Header = () => {
   const navigate = useNavigate();
   const searchRef = useRef();
@@ -8,6 +10,14 @@ const Header = () => {
     e.preventDefault();
     const search = searchRef.current.value;
     navigate(`/${search}`);
+  };
+  const { userData,setUserData } = useContext(UserContext);
+  const Logout=()=>
+  {
+    console.log("logout clicked!");
+    localStorage.removeItem("User");
+    setUserData(null);
+    navigate("/"); 
   }
   return (
     <>
@@ -38,7 +48,7 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link">Profile</Link>
+                <Link to={"/user"} className="nav-link">Profile</Link>
               </li>
               <li className="nav-item dropdown">
                 <Link
@@ -83,13 +93,19 @@ const Header = () => {
               </button>
               &nbsp;
             </form>
-            <Link to={"/register"}>
-              <button className="btn btn-warning">SignUp</button>
-            </Link>{" "}
-            &nbsp;
-            <Link to={"/Login"}>
-              <button className="btn btn-primary">LogIn</button>
-            </Link>
+            {!userData ? (
+              <>
+                <Link to="/register">
+                  <button className="btn btn-warning">SignUp</button>
+                </Link>
+                &nbsp;
+                <Link to="/login">
+                  <button className="btn btn-primary">LogIn</button>
+                </Link>
+              </>
+            ) : (
+              <button className="btn btn-success" onClick={Logout}>LogOut</button>
+            )}
           </div>
         </div>
       </nav>

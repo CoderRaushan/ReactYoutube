@@ -1,16 +1,25 @@
-import React, { createContext } from 'react'
-import Cookies from "js-Cookies"
-export const UserContex=createContext();
-const ContextProvider=({childen})=>
-{
+import React, { createContext, useState, useEffect } from 'react';
+export const UserContext = createContext();
 
-}
-const UserProfile = () => {
+const ContextProvider = ({ children }) => {
+  const [userData, setUserData] = useState({
+    _id: '',
+    name: '',
+    email: '',
+  });
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('User'));
+    if (user) {
+      setUserData({ _id: user.userId, name: user.name, email: user.email });
+    }
+  }, []);
+
   return (
-    <div>
+    <UserContext.Provider value={{ userData, setUserData }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
 
-    </div>
-  )
-}
-
-export default UserProfile;
+export default ContextProvider;

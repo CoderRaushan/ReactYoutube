@@ -1,12 +1,14 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import {useNavigate } from "react-router-dom";
+import { UserContext } from "../Stores/UserProfile";
 const Register = () => {
+  const { userData,setUserData} = useContext(UserContext);
   const emailRef = useRef();
   const passwordRef = useRef();
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
@@ -24,11 +26,14 @@ const Register = () => {
             email:response.data.email,
         }
         localStorage.setItem("User",JSON.stringify(User));
+        const user = JSON.parse(localStorage.getItem("User"));
+        setUserData({ _id: user.userId, name: user.name, email: user.email });
         toast.success(message, 
         {
           position: "top-center", 
           autoClose: 3000,
         });
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message, 
@@ -39,6 +44,9 @@ const Register = () => {
         console.error(error);
       });
   };
+
+  
+
 
   return (
     <div className="row">

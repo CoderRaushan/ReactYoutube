@@ -2,7 +2,9 @@ import React, { useRef } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 const Register = () => {
+  const navigate=useNavigate();
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -28,6 +30,10 @@ const Register = () => {
           autoClose:3000,
         });
         console.log("data posted to server successfully",response.data);
+        nameRef.current.value="";
+        emailRef.current.value="";
+        confirmPasswordRef.current.value="";
+        
       })
       .catch((error) => {
         toast.error(error.message,{
