@@ -1,13 +1,12 @@
 import jwt from "jsonwebtoken";
 const jwtTokenFunction=(userId,name,email,res)=>
 {
-   console.log("from jwtToken.js values received:",userId,name,email,res);
    const jwtToken=jwt.sign({userId,name,email},process.env.JwtTokenKEY,{expiresIn:"2d"});
    res.cookie('jwt', jwtToken, {
-      httpOnly: true,
-      secure: false, // Change to true in production
-      sameSite: 'Strict', // Adjust based on your requirements
+      maxAge: 24 * 60 * 60 * 1000, 
+      httpOnly: true,              
+      secure: false,                
+      sameSite: 'strict'            
     });
-    console.log("Set cookie with JWT:", jwtToken);
 };
 export default jwtTokenFunction;
