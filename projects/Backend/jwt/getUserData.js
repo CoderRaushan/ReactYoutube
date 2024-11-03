@@ -8,13 +8,19 @@ export const getUserData = (req, res) =>
     return res.status(401).json({ error: "No token provided" });
   }  
   jwt.verify(token, process.env.JwtTokenKEY, (err, decoded) => {
-    if (err) {
-      console.log("Token verification error:", err); 
-      return res.status(403).json({ error: "Invalid token" });
+    try
+    {
+      if (err) {
+        console.log("Token verification error:", err); 
+        return res.status(403).json({ error: "Invalid token" });
+      }
+      const userId = decoded.userId;
+      const name = decoded.name;
+      const email = decoded.email;
+      return res.json({ userId, name, email });
+    }catch(err)
+    {
+      return res.status(403).json({ error: "Token varification error:" });
     }
-    const userId = decoded.userId;
-    const name = decoded.name;
-    const email = decoded.email;
-    return res.json({ userId, name, email });
   });
 };
