@@ -1,29 +1,9 @@
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../Stores/UserProfile';
-
-function UserProfile() {
-    // const [userData, setUserData] = useState({
-    //     _id: '',
-    //     name: '',
-    //     email: '',
-    // });
-    // useEffect(() => {
-        // axios.get("http://localhost:8080/user/getdata", { withCredentials: true })
-        //     .then((response) => 
-        //     {
-        //         console.log(response.data);
-        //         const {_id, name, email } = response.data;
-        //         setUserData({ _id,name, email });
-        //     })
-        //     .catch((error) => 
-        //     {
-        //         console.error("There was an error!", error);
-        //     });
-    // }, []);
-
-    const { userData } = useContext(UserContext);
-   
+function UserProfile() 
+{
+    const { userData,setUserData} = useContext(UserContext);
     return (
         <div>
             <h3>UserId: {userData._id || 'N/A'}</h3>

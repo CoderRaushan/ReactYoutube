@@ -16,18 +16,11 @@ const Register = () => {
     const data = { email, password };
 
     axios
-      .post("http://localhost:8080/user/login", data)
+      .post("http://localhost:8243/user/login", data, { withCredentials: true })
       .then((response) => {
         const message = response.data.message;
         console.log(response.data);
-        const User={
-            userId:response.data._id,
-            name:response.data.name,
-            email:response.data.email,
-        }
-        localStorage.setItem("User",JSON.stringify(User));
-        const user = JSON.parse(localStorage.getItem("User"));
-        setUserData({ _id: user.userId, name: user.name, email: user.email });
+        setUserData({ _id: response.data._id, name:response.data.name, email:response.data.email});
         toast.success(message, 
         {
           position: "top-center", 
@@ -44,9 +37,6 @@ const Register = () => {
         console.error(error);
       });
   };
-
-  
-
 
   return (
     <div className="row">

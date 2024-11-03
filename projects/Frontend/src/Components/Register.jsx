@@ -23,7 +23,7 @@ const Register = () => {
       confirmPassword: confirmPassword,
     };
     axios
-      .post("http://localhost:8080/user/register", data)
+      .post("http://localhost:8243/user/register", { withCredentials: true })
       .then((response) => {
         toast.success(response.data.message,{
           position:"top-center",

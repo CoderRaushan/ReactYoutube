@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Stores/UserProfile";
-
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Header = () => {
   const navigate = useNavigate();
   const searchRef = useRef();
@@ -14,10 +16,27 @@ const Header = () => {
   const { userData,setUserData } = useContext(UserContext);
   const Logout=()=>
   {
-    console.log("logout clicked!");
-    localStorage.removeItem("User");
-    setUserData(null);
-    navigate("/"); 
+    axios
+    .post("http://localhost:8243/user/logout",{ withCredentials: true })
+    .then((response) => {
+      const message = response.data.message;
+      console.log(response.data);
+      // setUserData({ _id: response.data._id, name:response.data.name, email:response.data.email});
+      toast.success(message, 
+      {
+        position: "top-center", 
+        autoClose: 3000,
+      });
+      // navigate("/");
+    })
+    .catch((error) => {
+      toast.error(error.message, 
+      {
+        position: "top-center",
+        autoClose: 3000,
+      });
+      console.error(error);
+    });
   }
   return (
     <>
@@ -92,6 +111,7 @@ const Header = () => {
                 Search
               </button>
               &nbsp;
+              <ToastContainer />
             </form>
             {!userData ? (
               <>
