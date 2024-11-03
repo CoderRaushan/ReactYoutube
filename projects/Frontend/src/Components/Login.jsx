@@ -4,8 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate } from "react-router-dom";
 import { UserContext } from "../Stores/UserProfile";
-const Register = () => {
-  const { userData,setUserData} = useContext(UserContext);
+const Login = () => {
+  const { userData, setUserData, isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ const Register = () => {
         const message = response.data.message;
         console.log(response.data);
         setUserData({ _id: response.data._id, name:response.data.name, email:response.data.email});
+        setIsAuthenticated(true);
         toast.success(message, 
         {
           position: "top-center", 
@@ -76,4 +77,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

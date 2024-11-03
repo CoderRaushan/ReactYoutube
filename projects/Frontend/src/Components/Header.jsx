@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Stores/UserProfile";
-import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from "js-cookie";
 const Header = () => {
   const navigate = useNavigate();
   const searchRef = useRef();
@@ -13,31 +13,13 @@ const Header = () => {
     const search = searchRef.current.value;
     navigate(`/${search}`);
   };
-  const { userData,setUserData } = useContext(UserContext);
-  const Logout=()=>
-  {
-    axios
-    .post("http://localhost:8243/user/logout",{ withCredentials: true })
-    .then((response) => {
-      const message = response.data.message;
-      console.log(response.data);
-      // setUserData({ _id: response.data._id, name:response.data.name, email:response.data.email});
-      toast.success(message, 
-      {
-        position: "top-center", 
-        autoClose: 3000,
-      });
-      // navigate("/");
-    })
-    .catch((error) => {
-      toast.error(error.message, 
-      {
-        position: "top-center",
-        autoClose: 3000,
-      });
-      console.error(error);
-    });
-  }
+  const { userData, setUserData, isAuthenticated, setIsAuthenticated } = useContext(UserContext);
+  const Logout = () => {
+    Cookies.remove('jwt');
+    setIsAuthenticated(false); 
+    setUserData(null);
+    navigate('/login'); 
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -113,7 +95,7 @@ const Header = () => {
               &nbsp;
               <ToastContainer />
             </form>
-            {!userData ? (
+            {!isAuthenticated ? (
               <>
                 <Link to="/register">
                   <button className="btn btn-warning">SignUp</button>
