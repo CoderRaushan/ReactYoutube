@@ -15,9 +15,11 @@ const Header = () => {
   };
   const { userData, setUserData, isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const Logout = () => {
-    Cookies.remove('jwt');
+    console.log("cookies was:",Cookies.get("jwt"));
+    Cookies.remove("jwt", { path: "/" });
     setIsAuthenticated(false); 
     setUserData(null);
+    console.log("After cookies was deleted:",Cookies.get("jwt"), { path: "/" });
     navigate('/login'); 
   };
   return (

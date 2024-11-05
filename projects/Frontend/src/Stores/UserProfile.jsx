@@ -12,10 +12,10 @@ const ContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    // const token = Cookies.get("jwt");
-    // console.log("token is:",token);
-    // if (token) 
-    // {
+    const token = Cookies.get("jwt");
+    console.log("token is:",token);
+    if (token) 
+    {
       axios
       .get("http://localhost:8243/user/getdata", { withCredentials: true })
       .then((response) => {
@@ -30,15 +30,15 @@ const ContextProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
-        Cookies.remove('jwt');
+        Cookies.remove("jwt", { path: "/" });
         setIsAuthenticated(false);
         setUserData({ _id: "", name: "", email: "" });
       });
-    // }
-    // else 
-    // {
-    //   console.log("token is not in the browser!");
-    // }
+    }
+    else 
+    {
+      console.log("token is not in the browser!");
+    }
   }, []);
 
   return (
